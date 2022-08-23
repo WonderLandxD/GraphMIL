@@ -138,6 +138,23 @@ class Backbone(nn.Module):
                                        FFN(in_features=in_features, out_features=in_features, drop_path=drop_rate),
                                        )
 
+        self.classifier = nn.Sequential(
+            nn.Conv2d(in_channels=in_features, out_channels=1024, kernel_size=1, bias=True),
+            nn.BatchNorm2d(1024),
+            nn.ReLU(),
+            nn.Dropout(p=drop_rate),
+            nn.Conv2d(1024, num_classes, 1, bias=True))
+
+    def forward(self, inputs):
+        #需修改
+        x = self.Stem(inputs)
+        pos_emb = self.pos_embed
+        x = self.vig_block(x + pos_emb)
+        x = F.adaptive_max_pool2d(x, 1)
+        x = self.classifier(x).squeeze(-1).squeeze(-1)
+
+        return x
+
 
 if __name__ == '__main__':
     FeatEncoder = timm.create_model('resnet18', pretrained=True, features_only=True)
