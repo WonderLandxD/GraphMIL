@@ -128,14 +128,14 @@ class FFN(nn.Module):
 #----------------------Graph Embedding Backbone--------------------------------------
 
 
-class FeatViGBackbone(nn.Module):
+class GraphMILBackbone(nn.Module):
     """
     Input --- Feature: (N_vertices, C_dimension)
     Forward --- Using Vision Graph Block (Grapher + FNN) & Nonlinear Classifier (MLP)
     Output --- Num Classes : (N_vertices, Num Classes) / (1, Num Classes)
     """
     def __init__(self, in_features, k, num_classes=2, conv_class='edge', drop_path=0.0, drop_out=0.0):
-        super(FeatViGBackbone, self).__init__()
+        super(GraphMILBackbone, self).__init__()
 
         self.blocks = [3, 3, 3, 3]
         self.channels = [512, 640, 768, 1024]
@@ -212,9 +212,9 @@ if __name__ == '__main__':
         in_features = feature_tensor.shape[1]
 
 
-        backbone = FeatViGBackbone(in_features=in_features, k=3, num_classes=2, conv_class='edge', drop_path=0.0, drop_out=0.0)
+        MIL_backbones = GraphMILBackbone(in_features=in_features, k=3, num_classes=2, conv_class='edge', drop_path=0.0, drop_out=0.0)
         if torch.cuda.is_available() == True:
             feature_tensor = feature_tensor.cuda()
-            backbone = backbone.cuda()
+            MIL_backbones = MIL_backbones.cuda()
 
-        features_pred = backbone(feature_tensor)
+        features_pred = MIL_backbones(feature_tensor)
