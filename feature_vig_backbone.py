@@ -132,27 +132,54 @@ class FeatViGBackbone(nn.Module):
     """
     Input --- Feature: (N_vertices, C_dimension)
     Forward --- Using Vision Graph Block (Grapher + FNN) & Nonlinear Classifier (MLP)
-    Output --- Num Classes : (N_vertices, Num Classes)
+    Output --- Num Classes : (N_vertices, Num Classes) / (1, Num Classes)
     """
     def __init__(self, in_features, k, num_classes=2, conv_class='edge', drop_path=0.0, drop_out=0.0):
         super(FeatViGBackbone, self).__init__()
 
-        self.vig_block = nn.Sequential(Grapher(in_features, k, conv_class, drop_path=drop_path),
-                                       FFN(in_features=in_features, out_features=in_features, drop_path=drop_path),
-                                       )
+        self.blocks = [3, 3, 3, 3]
+        self.channels = [512, 640, 768, 1024]
+        self.knns = [9, 12, 15, 18]
+        self.backbone = nn.ModuleList([])
+        #-----前n-1层block-----
+        for i in range(len(self.blocks) - 1):
+            for j in range(self.blocks[i] - 1):
+                self.backbone += [nn.Sequential(Grapher(in_features=self.channels[i], k=self.knns[i], conv_class=conv_class, drop_path=drop_path),
+                                                FFN(in_features=self.channels[i], out_features=self.channels[i], drop_path=drop_path)
+                                                )
+                                  ]
+            self.backbone += [nn.Sequential(Grapher(in_features=self.channels[i], k=self.knns[i], conv_class=conv_class, drop_path=drop_path),
+                                            FFN(in_features=self.channels[i], out_features=self.channels[i+1], drop_path=drop_path)
+                                            )
+                              ]
+        #-----最后一层block-----
+        for j in range(self.blocks[-1]):
+            self.backbone += [nn.Sequential(Grapher(in_features=self.channels[-1], k=self.knns[-1], conv_class=conv_class, drop_path=drop_path),
+                                            FFN(in_features=self.channels[-1], out_features=self.channels[-1], drop_path=drop_path)
+                                            )
+                             ]
+
+        self.backbone = nn.Sequential(*self.backbone)
+
+        # self.vig_block = nn.Sequential(Grapher(in_features, k, conv_class, drop_path=drop_path),
+        #                                FFN(in_features=in_features, out_features=in_features, drop_path=drop_path),
+        #                                )
 
         self.classifier = nn.Sequential(
-            nn.Linear(in_features=in_features, out_features=1024, bias=True),
+            nn.Linear(in_features=self.channels[-1], out_features=self.channels[-1] // 2, bias=True),
             nn.ReLU(),
             nn.Dropout(p=drop_out),
-            nn.Linear(1024, num_classes, bias=True)
+            nn.Linear(self.channels[-1] // 2, num_classes, bias=True)
         )
 
     def forward(self, inputs):
         #需修改
-        # x = self.Stem(inputs)
         # pos_emb = self.pos_embed
-        x = self.vig_block(inputs)
+        x = self.backbone(inputs)
+        # embedding_pooling ---> AvgPooling
+        x_sum = torch.sum(x, dim=0)
+        x = torch.div(x_sum, int(x[0]))
+
         x = self.classifier(x)
 
         return x
@@ -180,7 +207,7 @@ if __name__ == '__main__':
 
     if args.backbone_select == 'feature':
 
-        feature_tensor = torch.randn(8, 64)
+        feature_tensor = torch.randn(8, 512)
         N, C = feature_tensor.shape
         in_features = feature_tensor.shape[1]
 
