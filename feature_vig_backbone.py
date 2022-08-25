@@ -176,7 +176,7 @@ class GraphMILBackbone(nn.Module):
         #需修改
         # pos_emb = self.pos_embed
         x = self.backbone(inputs)
-        # embedding_pooling ---> AvgPooling
+        # embedding_pooling ---> AvgPooling         (这里有两种思路：一种embedding_pooling：max，avg，att；一种Class Token，基于TransMIL)
         x_sum = torch.sum(x, dim=0)
         x = torch.div(x_sum, int(x[0]))
 
