@@ -3,9 +3,9 @@ GraphMIL Research (Updating)
 
 ***Updating on 2022.08.28***
 
-**Using feature_vig_backbone.py as the GraphMIL backbone**
+**1. Using feature_vig_backbone.py as the GraphMIL backbone**
 
-**Using ResNet50 as the feature extractor (will update soon)**
+**2. Using ResNet50 as the feature extractor (will update soon)**
 
 ## Research One --- 乳腺癌er pr her2指标 by FYQ & ZZ
 1. 利用MIL方法（常见的几种方法均可，参考TransMIL论文中的Baseline对比试验，可自行选择一种），完成WSI级别上的全自动化指标评定任务（弱监督学习，只需WSI级别标签，无需patch标注）
