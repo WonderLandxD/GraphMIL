@@ -7,6 +7,10 @@ GraphMIL Research (Updating)
 
 **2. Using ResNet50 as the feature extractor (will update soon)**
 
+***Updating on 2022.08.29***
+
+**1. Updata feature extractor on PUBLIC Datasets (win version, based on *Openslide*)**
+
 ## Research One --- 乳腺癌er pr her2指标 by FYQ & ZZ
 1. 利用MIL方法（常见的几种方法均可，参考TransMIL论文中的Baseline对比试验，可自行选择一种），完成WSI级别上的全自动化指标评定任务（弱监督学习，只需WSI级别标签，无需patch标注）
 2. 调研乳腺癌er pr her2指标相关文献，包括两大类。一，相关医学问题的已研究进展；二，针对此医学问题的相关方法。注意：两项调研对象并不分离。建议将已调研的文献总结下来，记录成表格或文字。
