@@ -3,13 +3,94 @@ GraphMIL Research (Updating)
 
 ***Updating on 2022.08.28***
 
-1. Using feature_vig_backbone.py as the GraphMIL backbone
+- Using feature_vig_backbone.py as the GraphMIL backbone
 
-2. Using ResNet50 as the feature extractor (will update soon)
+- Using ResNet50 as the feature extractor (will update soon)
 
 ***Updating on 2022.08.29***
 
-1. Updata feature extractor on PUBLIC Datasets (win & linux version, based on *Openslide*), the process will upload later.
+- Update feature extractor on PUBLIC Datasets (win & linux version, based on *Openslide*), the process will upload later.
+
+***Updating on 2022.08.30***
+
+- Update *wsi_process folder*, which contains *wsi_core folder*, *create_patches_fp.py*, *cut_tiles.py*, *feature_extractor.py*,
+
+### Step 1：Install Sdpc Library
+
+`pip install sdpc-win` for windows system
+
+` ` for linux system (will upload later)
+
+### Step 2: Create h5 Files (which contains the coordinates of tiles)
+
+``` shell
+python ./wsi_process/create_patches_fp.py --img_format IMAGE_FORMAT (os: .svs, .tif; sdpc: .sdpc)  --source WSI_DIRECTORY --step_size 224 --patch_size 224 --save_dir RESULTS_DIRECTORY --patch_level 1 
+```
+
+```bash
+WSI_DIRECTORY/
+	├── slide_1.svs (slide_1.sdpc)
+	├── slide_2.svs (slide_2.sdpc)
+	└── ...
+```
+
+```bash
+RESULTS_DIRECTORY/
+	├── masks
+    		├── slide_1.jpg
+    		├── slide_2.jpg
+    		└── ...
+	├── h5
+    		├── slide_1.h5
+    		├── slide_2.h5
+    		└── ...
+	├── stitches
+    		├── slide_1.jpg
+    		├── slide_2.jpg
+    		└── ...
+	└── process_list_autogen.csv
+```
+Note that 
+- if the IMAGE_FORMAT is .sdpc, h5 files will be stored on the WSI_DIRECTORY folder and stitches can not show. (These bugs will fix later, before this you need to drag all h5 files into the h5 folder manually)
+- On windows system, the directory will be written like 'xx\xx\xx\xx\', but on linux system, the directory will be written the same as normal.
+
+### Step 3: Get Tiles (patches) 
+
+``` shell
+python ./wsi_process/cut_tiles.py --slide_dir WSI_DIRECTORY  --h5_dir H5_DIRECTORY --save_dir TILES_DIRECTORY --sys_select SYSTEM --img_format IMAGE_FORMAT (os: .svs, .tif; sdpc: .sdpc)
+```
+
+```bash
+TILES_DIRECTORY/
+	├── tiles
+    		├── slide_1 
+                   ├── slide_1_tile_1.png
+    		           ├── slide_1_tile_2.png
+    		           └── ...
+                    
+    		├── slide_2 
+                   ├── slide_2_tile_1.png
+    		           ├── slide_2_tile_2.png
+    		           └── ...
+        ├── ...
+    		└── ...
+```
+
+### Step 4: Get Feature Embeddings (based on ResNet50 Backbone, others will upload later)
+
+``` shell
+python ./wsi_process/feature_extractor.py --gpu GPU (single or multiple)  --tiles_dir TILES_DIRECTORY --feat_dir FEAT_DIRECTORY --batch_size BATCH_SIZE --feat_backbone FEATURE_BACKBONE
+```
+
+```bash
+FEAT_DIRECTORY/
+	├── slide_1.pt
+  ├── slide_2.pt
+  ├── slide_3.pt 
+  ├── ...
+  └── ...
+```
+
 
 ## Research One --- 乳腺癌er pr her2指标 by FYQ & ZZ
 1. 利用MIL方法（常见的几种方法均可，参考TransMIL论文中的Baseline对比试验，可自行选择一种），完成WSI级别上的全自动化指标评定任务（弱监督学习，只需WSI级别标签，无需patch标注）
