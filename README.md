@@ -62,18 +62,17 @@ python ./wsi_process/cut_tiles.py --slide_dir WSI_DIRECTORY  --h5_dir H5_DIRECTO
 
 ```bash
 TILES_DIRECTORY/
-	├── tiles
-    		├── slide_1 
-                   ├── slide_1_tile_1.png
-    		           ├── slide_1_tile_2.png
-    		           └── ...
-                    
-    		├── slide_2 
-                   ├── slide_2_tile_1.png
-    		           ├── slide_2_tile_2.png
-    		           └── ...
-        ├── ...
-    		└── ...
+	├── slide_1 
+		   ├── slide_1_tile_1.png
+		   ├── slide_1_tile_2.png
+		   └── ...
+
+	├── slide_2 
+		   ├── slide_2_tile_1.png
+		   ├── slide_2_tile_2.png
+		   └── ...
+	├── ...
+	└── ...
 ```
 
 ### Step 4: Get Feature Embeddings (based on ResNet50 Backbone, others will upload later)
@@ -84,7 +83,7 @@ python ./wsi_process/feature_extractor.py --gpu GPU (single or multiple)  --tile
 
 ```bash
 FEAT_DIRECTORY/
-	├── slide_1.pt
+  ├── slide_1.pt
   ├── slide_2.pt
   ├── slide_3.pt 
   ├── ...
