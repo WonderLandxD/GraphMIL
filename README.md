@@ -17,13 +17,17 @@ GraphMIL Research (Updating)
 
 - Update *wsi_process folder*, which contains *wsi_core folder*, *create_patches_fp.py*, *cut_tiles.py*, *feature_extractor.py*,
 
+***Updating on 2022.09.04***
+
+- The framework of GraphMIL has been improved, and back-propagation can now be performed (the depth and parameter improvement of the backbone still needs to be done in the *feature_vig_backbone.py* file, and the external model interface will be provided later)
+
+- Updating *train.py* file, Model training with *train.py* is now available
+
 ## II. PROCESS
 
-### Step 1：Install Sdpc Library
+### Step 1：Install Sdpc Library (If using Public Datasets, such as .svs, .tiff, skip this step）
 
-`pip install sdpc-win` for windows system
-
-`pip install sdpc-linux ` for linux system
+`pip install sdpc-win` for windows system; `pip install sdpc-linux` for linux system
 
 ### Step 2: Create h5 Files (which contains the coordinates of tiles)
 
@@ -92,6 +96,12 @@ FEAT_DIRECTORY/
   ├── slide_3.pt 
   ├── ...
   └── ...
+```
+
+### Step 5 Training with GraphMIL
+
+``` shell
+python train.py --gpu 0 or MULTIPLE GPUS  --num_epoch NUM_EPOCH --lr LEARNING RATE --dataset SYS (Currently only the SYS dataset) --upper_bound 8000 
 ```
 
 ## III. RESEARCH
