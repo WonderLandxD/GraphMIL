@@ -98,7 +98,7 @@ FEAT_DIRECTORY/
   └── ...
 ```
 
-### Step 5 Training with GraphMIL
+### Step 5: Training with GraphMIL
 
 ``` shell
 python train.py --gpu 0 or MULTIPLE GPUS  --num_epoch NUM_EPOCH --lr LEARNING RATE --dataset SYS (Currently only the SYS dataset) --upper_bound 8000 
