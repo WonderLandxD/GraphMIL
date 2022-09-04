@@ -5,23 +5,27 @@ GraphMIL Research (Updating)
 
 ***Updating on 2022.08.28***
 
-- Using feature_vig_backbone.py as the GraphMIL backbone
+- Used feature_vig_backbone.py as the GraphMIL backbone
 
-- Using ResNet50 as the feature extractor (will update soon)
+- Used ResNet50 as the feature extractor (will update soon)
 
 ***Updating on 2022.08.29***
 
-- Update feature extractor on PUBLIC Datasets (win & linux version, based on *Openslide*), the process will upload later.
+- Updated feature extractor on PUBLIC Datasets (win & linux version, based on *Openslide*), the process will upload later.
 
 ***Updating on 2022.08.30***
 
-- Update *wsi_process folder*, which contains *wsi_core folder*, *create_patches_fp.py*, *cut_tiles.py*, *feature_extractor.py*,
+- Updated *wsi_process folder*, which contains *wsi_core folder*, *create_patches_fp.py*, *cut_tiles.py*, *feature_extractor.py*,
 
 ***Updating on 2022.09.04***
 
 - The framework of GraphMIL has been improved, and back-propagation can now be performed (the depth and parameter improvement of the backbone still needs to be done in the *feature_vig_backbone.py* file, and the external model interface will be provided later)
 
-- Updating *train.py* file, Model training with *train.py* is now available
+- Updated *train.py* file, Model training with *train.py* is now available
+
+***Updating on 2022.09.05***
+
+- Updated 4-fold cross-validation for the SYSFL dataset
 
 ## II. PROCESS
 
