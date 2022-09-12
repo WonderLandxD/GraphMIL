@@ -25,11 +25,13 @@ GraphMIL Research (Updating)
 
 ***Updating on 2022.09.05***
 
-- Updated training code of 4-fold cross-validation for the SYSFL dataset
+- Updated training code of 4-fold cross-validation for the SYSFL dataset (PRIVATE DATASET)
+- SYSFL Directory: (Will Update later)
 
 ***Updating on 2022.09.12***
 
-- Updated training code of 4-fold cross-validation for the Camelyon16 dataset
+- Updated training code of 4-fold cross-validation for the Camelyon16 dataset (OPEN DATASET)
+- Camelyon16 Directory: `/data_public/Wonderland/Datasets/Public/CAMELYON16`
 
 ## II. PROCESS
 
