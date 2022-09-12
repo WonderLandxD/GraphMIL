@@ -26,16 +26,19 @@ GraphMIL Research (Updating)
 ***Updating on 2022.09.05***
 
 - Updated training code of 4-fold cross-validation for the SYSFL dataset (PRIVATE DATASET)
-- SYSFL Directory: (Will Update later)
+- SYSFL WSIs Directory: `A:\Datasets\Histopathology\WSI_SYSFL (Local PC)`
+- SYSFL features Directory: `A:\Datasets\Histopathology\WSI_SYSFL\create_patch_fp\*\pt_files (Local PC)`
+- SYSFL Directory on THU-Sever will update later
 
 ***Updating on 2022.09.12***
 
 - Updated training code of 4-fold cross-validation for the Camelyon16 dataset (OPEN DATASET)
-- Camelyon16 Directory: `/data_public/Wonderland/Datasets/Public/CAMELYON16`
+- Camelyon16 WSIs Directory: `/data_public/Wonderland/Datasets/Public/CAMELYON16/CAMELYON16`
+- Camelyon16 features Directory: `/data_public/Wonderland/Datasets/Public/CAMELYON16/Cam16_20x_224/*/*/pt_files`
 
 ## II. PROCESS
 
-### Step 1：Install Sdpc Library (If using Public Datasets, such as .svs, .tiff, skip this step）
+### Step 1：Install Sdpc Library (If using Public Datasets, such as .svs, .tiff, skip this step)
 
 `pip install sdpc-win` for windows system; `pip install sdpc-linux` for linux system
 
