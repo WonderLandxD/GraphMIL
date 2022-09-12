@@ -114,7 +114,7 @@ FEAT_DIRECTORY/
 ### Step 5: Training with GraphMIL
 
 ``` shell
-python train.py --gpu 0 or MULTIPLE GPUS  --num_epoch NUM_EPOCH --lr LEARNING RATE --dataset SYS (Currently only the SYS dataset) --upper_bound 8000 
+python train.py --gpu 0 or MULTIPLE GPUS  --num_epoch NUM_EPOCH --lr LEARNING RATE --dataset SYS or Cam16 --upper_bound 8000 
 ```
 
 ## III. RESEARCH
@@ -142,7 +142,7 @@ python train.py --gpu 0 or MULTIPLE GPUS  --num_epoch NUM_EPOCH --lr LEARNING RA
 
 **·注：两人之间要明确知晓、熟悉所研究内容。同时分工也须明确，切忌一个人干完所有的活；阶段工作完成后，相互给对方两人介绍，完成对接**
 
-### NO.3 --- *GraphMIL：Multiple Instance Learning Based on Graph* by ZZ & ZBQ & FYQ & ZQL & LJW（目前由ljw完善代码，并持续更新）
+### NO.3 --- *GraphMIL：Multiple Instance Learning Based on Graph* by ZZ & ZBQ & FYQ & ZQL & LJW
 
 1. **整理之前实现的HE通道图的前置任务代码和结果，实现基于HE通道图的前置任务**包括：一，HE图像生成H、E通道图的代码；二，前置任务的代码（将Encoder部分添加backbone选择项-ResNet18，ResNet34，ResNet50，EfficientNet-b0，EfficientNet-b1，SwinTransformer-Tiny）做到后续的代码实验只需调整main函数的model参数，且结果保存在相应模型下的文件夹即可（在此期间可以学习相关模型的文献和代码部分，可利用timm包等帮助实现模型部署）；三，整理好前置任务的结果，包括生成出的H、E通道图和模型解码出的H、E通道图（在此期间逐步上传之前切出来的patch，并利用这些patch进行通道处理。进度可能会比较长，作为长期工作进行）；以及各个Encoder通过前置任务保存下来的权重（注意：保存时记得将模型各超参数也一并记录下来，方便后续整理规划）
 2. **处理H, E通道图放入self-attention模块的任务
