@@ -27,8 +27,7 @@ GraphMIL Research (Updating)
 
 - Updated training code of 4-fold cross-validation for the SYSFL dataset (PRIVATE DATASET)
 - SYSFL WSIs Directory: `A:\Datasets\Histopathology\WSI_SYSFL (Local PC)`
-- SYSFL features Directory: `A:\Datasets\Histopathology\WSI_SYSFL\create_patch_fp\*\pt_files (Local PC)`
-- SYSFL Directory on THU-Sever will update later
+- SYSFL features Directory: `/data_public/Wonderland/Datasets/Private/SYS_ThreeClasses_Features`
 
 ***Updating on 2022.09.12***
 
