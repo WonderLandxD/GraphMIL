@@ -39,8 +39,8 @@ GraphMIL Research (Updating)
 
 ### Step 1：Install Sdpc Library (If using Public Datasets, such as .svs, .tiff, skip this step)
 
-`pip install sdpc-win` for WINDOWS
-`pip install sdpc-linux` for LINUX
+`pip install sdpc-win` for windows
+`pip install sdpc-linux` for linux
 
 ### Step 2: Create h5 Files (which contains the coordinates of tiles)
 
