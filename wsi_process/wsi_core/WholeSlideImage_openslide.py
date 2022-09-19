@@ -8,9 +8,21 @@ import numpy as np
 import openslide
 from PIL import Image
 import math
-from wsi_process.wsi_core.wsi_utils import savePatchIter_bag_hdf5, initialize_hdf5_bag, save_hdf5, screen_coords, isBlackPatch, isWhitePatch, to_percentiles
-from wsi_process.wsi_core.util_classes import isInContourV1, isInContourV2, isInContourV3_Easy, isInContourV3_Hard, Contour_Checking_fn
-from wsi_process.wsi_core.file_utils import load_pkl, save_pkl
+
+try:      # windows
+    from wsi_utils import savePatchIter_bag_hdf5, initialize_hdf5_bag, save_hdf5, screen_coords, isBlackPatch, \
+        isWhitePatch, to_percentiles
+    from util_classes import isInContourV1, isInContourV2, isInContourV3_Easy, isInContourV3_Hard, \
+        Contour_Checking_fn
+    from file_utils import load_pkl, save_pkl
+except:   # linux
+    from wsi_core.wsi_utils import savePatchIter_bag_hdf5, initialize_hdf5_bag, save_hdf5, screen_coords, isBlackPatch, \
+        isWhitePatch, to_percentiles
+    from wsi_core.util_classes import isInContourV1, isInContourV2, isInContourV3_Easy, isInContourV3_Hard, \
+        Contour_Checking_fn
+    from wsi_core.file_utils import load_pkl, save_pkl
+
+
 
 Image.MAX_IMAGE_PIXELS = 933120000
 

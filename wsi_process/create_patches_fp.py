@@ -3,7 +3,7 @@ from wsi_core.WholeSlideImage_openslide import WholeSlideImage_os
 from wsi_core.WholeSlideImage_sdpc import WholeSlideImage_sdpc
 from wsi_core.wsi_utils import StitchCoords
 from wsi_core.batch_process_utils import initialize_df
-# other import
+# other imports
 import os
 import numpy as np
 import time
@@ -57,6 +57,7 @@ def seg_and_patch(args, source, save_dir, patch_save_dir, mask_save_dir, stitch_
 				  stitch= False, 
 				  patch = False, auto_skip=True, process_list = None):
 	
+
 
 	slides = sorted(os.listdir(source))
 	slides = [slide for slide in slides if os.path.isfile(os.path.join(source, slide))]
